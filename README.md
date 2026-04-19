@@ -9,13 +9,6 @@
 
 ---
 
-## 🎥 Demo
-
-👉 **Live App:** (Add your deployed link here)  
-👉 **Demo Video:** (Add YouTube / Drive link)
-
----
-
 ## 📸 Screenshots
 
 | Video Call | Gesture Detection | Output |
@@ -45,6 +38,7 @@ Camera → Frame Capture → MediaPipe → Hand Landmarks → ML Model → Predi
 👉 The system enables communication between deaf and normal users using AI-powered gesture recognition.
 
 🏗️ Architecture
+
 Frontend (React + WebRTC)
         ↓
 WebSocket / Socket.IO
@@ -52,7 +46,9 @@ WebSocket / Socket.IO
 Backend (FastAPI + AI Model)
         ↓
 Prediction → Frontend Overlay
+
 🛠️ Tech Stack
+
 🔹 Frontend
 React.js
 WebRTC
@@ -65,7 +61,9 @@ MediaPipe
 OpenCV
 NumPy
 WebSockets
+
 📁 Project Structure
+
 Sign-Language-Video-Calling/
 │
 ├── frontend/        # React app
@@ -74,7 +72,9 @@ Sign-Language-Video-Calling/
 ├── model/           # Trained model (.h5)
 ├── dataset/         # Training data
 └── README.md
+
 ⚙️ Installation
+
 1️⃣ Clone Repo
 git clone https://github.com/Shivam09xc/Sign-Language-Video-Calling.git
 cd Sign-Language-Video-Calling
@@ -90,28 +90,37 @@ npm start
 cd socket
 npm install
 node server.js
+
 🚀 Usage
+
 Open app in browser
 Create / Join Room
 Start video call
 Show gestures ✋
 Get real-time text output 💬
+
 ⚡ Performance Optimizations
+
 Frame throttling (process every 2–3 frames)
 Landmark smoothing (moving average)
 Prediction buffering (majority voting)
 Confidence filtering
 Async processing
+
 📊 Limitations
+
 Needs good lighting
 Limited gestures (A–Z)
 Performance depends on device
+
 🔮 Future Scope
+
 Sentence-level recognition (LSTM / Transformers)
 Voice output (Text-to-Speech)
 Mobile app (React Native)
 Multi-language support
 Face & pose detection
+
 🤝 Contributing
 
 Pull requests are welcome!
@@ -133,10 +142,6 @@ If you like this project, give it a ⭐ on GitHub and share it!
 
 
 ---
-
-# 🔥 EXTRA (IMPORTANT)
-
-## 🟢 Ab tu ye bhi kare:
 
 ### 1. Screenshot Upload Kar
 👉 Replace:
