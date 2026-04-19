@@ -13,7 +13,7 @@
 
 | Video Call | Gesture Detection | Output |
 |------------|------------------|--------|
-| ![call](https://via.placeholder.com/300x200) | ![gesture](https://via.placeholder.com/300x200) | ![output](https://via.placeholder.com/300x200) |
+
 
 ---
 
