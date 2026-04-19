@@ -86,4 +86,4 @@ io.on('connection', (socket) => {
   });
 });
 
-console.log('Node.js WebSocket Signaling server is running on ws://localhost:3001');
+console.log(`Node.js WebSocket Signaling server is running on port ${PORT}`);

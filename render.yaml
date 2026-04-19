@@ -1,0 +1,24 @@
+services:
+  # ─── 1. FastAPI ML Backend ────────────────────────────────────────────────
+  - type: web
+    name: asl-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    plan: free
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+
+  # ─── 2. Node.js Signaling Server ─────────────────────────────────────────
+  - type: web
+    name: asl-signaling
+    runtime: node
+    rootDir: signaling
+    buildCommand: npm install
+    startCommand: npm start
+    plan: free
+    envVars:
+      - key: NODE_VERSION
+        value: 18.20.0
