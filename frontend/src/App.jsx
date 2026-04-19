@@ -146,7 +146,9 @@ function App() {
   }
 
   useEffect(() => {
-    socketRef.current = io('http://localhost:3001')
+    // Rely on .env configuration for Production cloud targeting
+    const targetUrl = import.meta.env.VITE_SOCKET_URL || 'http://localhost:3001'
+    socketRef.current = io(targetUrl)
     const socket = socketRef.current
 
     socket.on('room_created', ({ room }) => {
@@ -276,7 +278,8 @@ function App() {
 
   useEffect(() => {
     const connectMLWebSocket = () => {
-      const ws = new WebSocket('ws://localhost:8000/ws/predict')
+      const mlTargetUrl = import.meta.env.VITE_ML_URL || 'ws://localhost:8000/ws/predict'
+      const ws = new WebSocket(mlTargetUrl)
       mlWsRef.current = ws
 
       ws.onopen = () => {
