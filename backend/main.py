@@ -1,3 +1,10 @@
+import os
+import sys
+
+# EXTREME MEMORY CONSTRAINTS FOR CLOUD FREE TIERS (MUST BE BEFORE TENSORFLOW IMPORT)
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -7,13 +14,13 @@ import cv2
 import mediapipe as mp
 import tensorflow as tf
 from tensorflow.keras.models import load_model
-import os
 import json
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
 
 app = FastAPI()
 
+# Wide open CORS needed for Render/Vercel connections natively
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -25,9 +32,10 @@ app.add_middleware(
 class FrameRequest(BaseModel):
     image: str
 
-# ML Models
-MODEL_PATH = r"c:\Users\Shivam Soni\Downloads\ASL\ASL-Sign-Recognition\model\asl_landmarks_mlp.h5"
-LABELS_PATH = r"c:\Users\Shivam Soni\Downloads\ASL\ASL-Sign-Recognition\model\labels.txt"
+# ML Models - Dynamically targeted using system-agnostic relative mapping
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "model", "asl_landmarks_mlp.h5")
+LABELS_PATH = os.path.join(BASE_DIR, "model", "labels.txt")
 
 if os.path.exists(MODEL_PATH) and os.path.exists(LABELS_PATH):
     model = load_model(MODEL_PATH)
@@ -36,7 +44,7 @@ if os.path.exists(MODEL_PATH) and os.path.exists(LABELS_PATH):
 else:
     model = None
     labels = []
-    print("Warning: Model or labels not found!")
+    print(f"CRITICAL WARNING: Cloud Model artifacts missing from {BASE_DIR}")
 
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(
@@ -118,7 +126,8 @@ async def predict_gesture(request: FrameRequest):
     loop = asyncio.get_running_loop()
     return await loop.run_in_executor(executor, process_frame_data, request.image)
 
-executor = ThreadPoolExecutor(max_workers=2)
+# Capped strictly to 1 thread to survive Render's 512MB RAM limitation limits.
+executor = ThreadPoolExecutor(max_workers=1)
 
 @app.websocket("/ws/predict")
 async def websocket_predict(websocket: WebSocket):
@@ -139,10 +148,8 @@ async def websocket_predict(websocket: WebSocket):
                 except json.JSONDecodeError:
                     image_data = data
                 
-                # Offload blocking ML processing to thread pool
                 result = await loop.run_in_executor(executor, process_frame_data, image_data)
                 
-                # Send result directly; if client disconnects, next send might fail but we catch it
                 await websocket.send_json(result)
                 queue.task_done()
         except asyncio.CancelledError:
@@ -156,7 +163,6 @@ async def websocket_predict(websocket: WebSocket):
         while True:
             data = await websocket.receive_text()
             
-            # If queue full, pop the oldest frame to avoid lag backlog
             if queue.full():
                 try:
                     queue.get_nowait()
@@ -174,5 +180,6 @@ async def websocket_predict(websocket: WebSocket):
 
 if __name__ == "__main__":
     import uvicorn
-    port = int(os.environ.get("PORT", 8000))
+    port = int(os.environ.get("PORT", 10000))
     uvicorn.run(app, host="0.0.0.0", port=port)
+
