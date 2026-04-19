@@ -1,132 +1,144 @@
-# 🧠 Sign Language Video Calling Web App
+# 🧠 Sign Language Video Calling Web App  
 
-A real-time AI-powered video calling web application that enables communication between deaf/mute users and normal users using **sign language recognition**.
+![GitHub stars](https://img.shields.io/github/stars/Shivam09xc/Sign-Language-Video-Calling?style=social)
+![GitHub forks](https://img.shields.io/github/forks/Shivam09xc/Sign-Language-Video-Calling?style=social)
+![GitHub issues](https://img.shields.io/github/issues/Shivam09xc/Sign-Language-Video-Calling)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+
+> 🚀 Real-time AI-powered video calling platform that translates sign language into text for seamless communication.
+
+---
+
+## 🎥 Demo
+
+👉 **Live App:** (Add your deployed link here)  
+👉 **Demo Video:** (Add YouTube / Drive link)
+
+---
+
+## 📸 Screenshots
+
+| Video Call | Gesture Detection | Output |
+|------------|------------------|--------|
+| ![call](https://via.placeholder.com/300x200) | ![gesture](https://via.placeholder.com/300x200) | ![output](https://via.placeholder.com/300x200) |
 
 ---
 
 ## 🌟 Features
 
-- 🎥 Real-time video calling using WebRTC  
+- 🎥 Real-time video calling (WebRTC)  
 - ✋ Sign language gesture recognition (A–Z)  
-- 💬 Live subtitle output from gestures  
-- 🧠 AI-based hand tracking using MediaPipe  
+- 💬 Live subtitle output  
+- 🧠 AI-based hand tracking (MediaPipe)  
 - 🔗 Room-based connection system  
-- 👥 Multi-user support (join via Room ID)  
-- ⚡ Real-time prediction with smoothing  
-- 🎯 Optimized for low latency and smooth performance  
+- 👥 Multi-user support  
+- ⚡ Smooth real-time performance (optimized)  
+- 🎯 Low-latency communication  
 
 ---
 
 ## 🧩 How It Works
 
-1. User joins or creates a room  
-2. Video call is established using WebRTC  
-3. Camera frames are captured  
-4. MediaPipe extracts hand landmarks  
-5. ML model predicts gesture  
-6. Output is displayed as text in real-time  
-
-👉 The system bridges communication gap between deaf and non-sign users using AI. :contentReference[oaicite:0]{index=0}  
-
----
-
-## 🏗️ System Architecture
-
 ```text
-User Video → Frame Capture → MediaPipe → Landmarks → ML Model → Prediction → UI Overlay
+Camera → Frame Capture → MediaPipe → Hand Landmarks → ML Model → Prediction → Subtitle Output
+
+👉 The system enables communication between deaf and normal users using AI-powered gesture recognition.
+
+🏗️ Architecture
+Frontend (React + WebRTC)
+        ↓
+WebSocket / Socket.IO
+        ↓
+Backend (FastAPI + AI Model)
+        ↓
+Prediction → Frontend Overlay
 🛠️ Tech Stack
-Frontend
+🔹 Frontend
 React.js
 WebRTC
 Socket.IO
-Backend
-FastAPI (Python)
+🔹 Backend
+FastAPI
 TensorFlow / Keras
 MediaPipe
-Other
+🔹 Other
 OpenCV
 NumPy
 WebSockets
 📁 Project Structure
 Sign-Language-Video-Calling/
 │
-├── frontend/        # React frontend
-├── backend/         # FastAPI + AI model
-├── socket/          # WebRTC signaling server
+├── frontend/        # React app
+├── backend/         # FastAPI + AI
+├── socket/          # Signaling server
 ├── model/           # Trained model (.h5)
-├── dataset/         # Training dataset
+├── dataset/         # Training data
 └── README.md
-⚙️ Installation & Setup
-🔹 Clone Repo
+⚙️ Installation
+1️⃣ Clone Repo
 git clone https://github.com/Shivam09xc/Sign-Language-Video-Calling.git
 cd Sign-Language-Video-Calling
-🔹 Backend Setup
+2️⃣ Backend
 cd backend
 pip install -r requirements.txt
 uvicorn main:app --reload
-🔹 Frontend Setup
+3️⃣ Frontend
 cd frontend
 npm install
 npm start
-🔹 Socket Server
+4️⃣ Socket Server
 cd socket
 npm install
 node server.js
 🚀 Usage
-Open the app in browser
-Create a room or join using Room ID
+Open app in browser
+Create / Join Room
 Start video call
-Show hand gestures to camera
-See real-time text output
-⚡ Optimization Techniques Used
+Show gestures ✋
+Get real-time text output 💬
+⚡ Performance Optimizations
 Frame throttling (process every 2–3 frames)
 Landmark smoothing (moving average)
 Prediction buffering (majority voting)
-Confidence threshold filtering
-Async processing for AI
+Confidence filtering
+Async processing
 📊 Limitations
-Works best with good lighting
-Limited gesture vocabulary (A–Z)
-Performance depends on device and network
-
-👉 Sign language translation is complex due to multiple body movements and lack of standardized datasets.
-
-🔮 Future Improvements
-Full sentence recognition (LSTM / Transformer)
+Needs good lighting
+Limited gestures (A–Z)
+Performance depends on device
+🔮 Future Scope
+Sentence-level recognition (LSTM / Transformers)
+Voice output (Text-to-Speech)
+Mobile app (React Native)
 Multi-language support
-Text-to-speech integration
-Mobile app version
-Face + pose detection
+Face & pose detection
 🤝 Contributing
 
-Contributions are welcome!
-Feel free to fork and improve the project.
+Pull requests are welcome!
+For major changes, open an issue first.
 
 📜 License
 
-This project is open-source and available under the MIT License.
+MIT License
 
 👨‍💻 Author
 
 Shivam Soni
-📌 BTech CSE Student
-🚀 AI & Full Stack Developer
+🎓 BTech CSE
+🚀 AI + Full Stack Developer
 
 ⭐ Support
 
-If you like this project, give it a ⭐ on GitHub!
+If you like this project, give it a ⭐ on GitHub and share it!
 
 
 ---
 
-# 🔥 Bro Final Tips
+# 🔥 EXTRA (IMPORTANT)
 
-👉 README me ye add kare:
-- Demo video link  
-- Screenshots (bahut important)  
-- Live URL  
+## 🟢 Ab tu ye bhi kare:
 
-👉 Ye tera project bana deta hai:
-💬 **“Production-level AI Communication Platform”**
-
----
+### 1. Screenshot Upload Kar
+👉 Replace:
+```text
+https://via.placeholder.com/300x200
