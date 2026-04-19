@@ -142,8 +142,3 @@ If you like this project, give it a ⭐ on GitHub and share it!
 
 
 ---
-
-### 1. Screenshot Upload Kar
-👉 Replace:
-```text
-https://via.placeholder.com/300x200
